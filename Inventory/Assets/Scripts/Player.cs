@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
     
     UnitStats stats = new UnitStats(10,10,100,100,5,5,10);
-    Inventory backpack= new Inventory("Amano",40, 10,4);
+    Inventory backpack= new Inventory("Amano",30, 10,4);
     public event Action OnOpenBackpack;
     public event Action OnCloseBackpack;
 

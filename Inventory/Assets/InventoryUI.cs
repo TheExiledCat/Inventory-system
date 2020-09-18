@@ -4,12 +4,13 @@ using UnityEngine;
 using TMPro;
 public class InventoryUI : MonoBehaviour
 {
+    Dictionary<Storage,GameObject> currentWindows = new Dictionary<Storage, GameObject>();
     [SerializeField] GameObject inventoryPrefab;
+    [SerializeField] GameObject chestPrefab;
     [SerializeField] GameObject slotPrefab;
     [Range(1,8)]
     [SerializeField] int maxX;
     [SerializeField] int space;
-    GameObject currentWindow;
     Canvas canvas;
     bool displaying;
     private void Start()
@@ -20,6 +21,20 @@ public class InventoryUI : MonoBehaviour
     {
         
     }
+    #region ChestUI
+    public void DrawChest(Storage storage)
+    {
+        CreateChestWindow(storage);
+    }
+    void CreateChestWindow(Storage storage)
+    {
+
+        GameObject currentWindow = Instantiate(chestPrefab, transform);
+        currentWindows.Add(storage, currentWindow);
+        
+    }
+    #endregion
+    #region Inventory UI
     public void DrawInventory(Inventory inventory)
     {
         CreateInventoryWindow(inventory);
@@ -27,31 +42,35 @@ public class InventoryUI : MonoBehaviour
     }
     public void RemoveInventory(Inventory inventory)
     {
-        Destroy(currentWindow);
+        Destroy(currentWindows[inventory]);
+        currentWindows.Remove(inventory);
         displaying = false;
     }
     void CreateInventoryWindow(Inventory inventory)
     {
-        currentWindow = Instantiate(inventoryPrefab, this.transform);
-
+        GameObject currentWindow = Instantiate(inventoryPrefab, transform);
+        currentWindows.Add(inventory,currentWindow);
         currentWindow.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = inventory.GetOwner() + "'s Storage";
-        CreateSlots(currentWindow, inventory);
+        Vector3 Origin = currentWindow.transform.GetChild(1).GetChild(0).transform.position;
+        CreateSlots(currentWindow, inventory,Origin);
     }
-    void CreateSlots(GameObject window, Inventory inventory)
+    void CreateSlots(GameObject window, Storage storage,Vector3 Origin)
     {
-        Vector3 origin = window.transform.GetChild(1).GetChild(0).transform.position;
-        for(int j = 0; j < inventory.GetSlots().Count / maxX; j++)
+        
+        for(int j = 0; j < storage.GetSlots().Count / maxX; j++)
         {
             for (int i = 0; i < maxX; i++)
             {
                
-                Instantiate(slotPrefab, origin + Vector3.right * i * space*canvas.scaleFactor + Vector3.down*j*space*canvas.scaleFactor, Quaternion.identity, window.transform);
+                Instantiate(slotPrefab, Origin + Vector3.right * i * space*canvas.scaleFactor + Vector3.down*j*space*canvas.scaleFactor, Quaternion.identity, window.transform);
             }
         }
         
     }
-    public bool Displaying(Inventory i)
+    #endregion
+    public bool Displaying(Storage i)
     {
         return displaying;
     }
+
 }

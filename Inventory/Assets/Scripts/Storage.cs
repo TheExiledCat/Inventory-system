@@ -7,7 +7,8 @@ public class Storage
     protected string owner;
     [SerializeField]
     protected List<InventorySlot> slots = new List<InventorySlot>();
-    protected void InitializeSlots(int size)
+    
+    public void InitializeSlots(int size)
     {
         for(int i = 0; i < size;i++)
         {
