@@ -355,7 +355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPrefab: {fileID: 3327438378470210752, guid: c77a869ab29561d479e630c2994e9141,
     type: 3}
-  chestPrefab: {fileID: 0}
+  chestPrefab: {fileID: 3333579756295999518, guid: ee2d7a562a7755b40b10cc8548ebff1c,
+    type: 3}
   slotPrefab: {fileID: 1786248812455338616, guid: e83ddc8f7a2fc0c4896a5f541e31c235,
     type: 3}
   maxX: 5
@@ -373,6 +374,7 @@ GameObject:
   - component: {fileID: 789463419}
   - component: {fileID: 789463418}
   - component: {fileID: 789463417}
+  - component: {fileID: 789463422}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -392,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df4e3b74dd56b84a8e95d6f2aacd6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 0
+  size: 10
 --- !u!65 &789463418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -467,6 +469,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &789463422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789463416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497cbedff2064f448abcec0d34c94292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 668171038}
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0

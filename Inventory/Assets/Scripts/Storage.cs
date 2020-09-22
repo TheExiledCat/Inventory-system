@@ -27,4 +27,8 @@ public class Storage
     {
         return owner;
     }
+    public void SetSlots(List<InventorySlot> s)
+    {
+        slots = s;
+    }
 }

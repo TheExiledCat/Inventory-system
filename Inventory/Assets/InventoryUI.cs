@@ -24,6 +24,7 @@ public class InventoryUI : MonoBehaviour
     #region ChestUI
     public void DrawChest(Storage storage)
     {
+        if(!currentWindows.ContainsKey(storage))
         CreateChestWindow(storage);
     }
     void CreateChestWindow(Storage storage)
