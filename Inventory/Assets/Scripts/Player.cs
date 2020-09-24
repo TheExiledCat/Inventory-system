@@ -5,10 +5,14 @@ public class Player : MonoBehaviour
 {
     
     UnitStats stats = new UnitStats(10,10,100,100,5,5,10);
-    Inventory backpack= new Inventory("Amano",30, 10,4);
+    [SerializeField]
+    Inventory backpack;
     public event Action OnOpenBackpack;
     public event Action OnCloseBackpack;
-
+    private void Awake()
+    {
+        backpack= new Inventory(stats, "Amano", 30, 10, 4);
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
